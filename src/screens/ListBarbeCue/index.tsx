@@ -1,5 +1,4 @@
-import { ButtonCreateBarbecue } from 'components/ButtonCreateBarbecue';
-import { Card } from 'components/Card';
+import { ButtonCreateBarbecue, Card } from 'components';
 import { useHistory } from 'react-router-dom';
 import { WrapperScreen } from 'styles/global';
 import { WrapperOutSide } from './styles';

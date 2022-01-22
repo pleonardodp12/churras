@@ -1,6 +1,4 @@
-import { AddButton } from 'components/AddButton';
-import { PriceTotal } from 'components/PriceTotal/intex';
-import { QuantityPeoples } from 'components/QuantityPeoples';
+import { AddButton, PriceTotal, QuantityPeoples } from 'components';
 import { WrapperScreen } from 'styles/global';
 import { ListItem } from './components/ListItem';
 import {

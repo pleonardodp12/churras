@@ -1,5 +1,5 @@
 import { ThemeProvider } from 'styled-components';
-import { Title } from 'components/Title';
+import { Title } from 'components';
 import { AppRoute } from 'routes/router';
 import GlobalStyles from './styles/global';
 import { theme } from './styles/theme';

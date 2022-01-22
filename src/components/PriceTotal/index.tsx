@@ -10,6 +10,7 @@ interface IProps {
 export function PriceTotal(props: IProps) {
   const { currencyBarbecue } = props;
   const { colors } = useTheme();
+
   return (
     <Wrapper>
       <CurrencyCircleDollar size={24} color={colors.primary} weight="fill" />

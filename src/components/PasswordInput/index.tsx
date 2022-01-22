@@ -1,5 +1,5 @@
-import { ErrorMessage } from 'components/ErrorMessage';
 import { InputHTMLAttributes, useState, useMemo } from 'react';
+import { ErrorMessage } from 'components';
 import { Eye, EyeSlash } from 'phosphor-react';
 import {
   InputWrapper,
@@ -26,6 +26,7 @@ export function PasswordInput(props: IProps) {
   }, [showPassword]);
 
   const onClickToggleShowPassword = () => setShowPassword(!showPassword);
+
   return (
     <InputWrapper>
       <Label>{label}</Label>

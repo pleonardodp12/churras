@@ -1,7 +1,5 @@
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
-import { ListBarbecue } from 'screens/ListBarbecue';
-import { DetailBarbecue } from 'screens/DetailBarbecue';
-import { Login } from 'screens/Login';
+import { Login, ListBarbecue, DetailBarbecue } from 'screens';
 
 export function AppRoute() {
   return (

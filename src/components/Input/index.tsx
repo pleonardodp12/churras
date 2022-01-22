@@ -1,5 +1,5 @@
-import { ErrorMessage } from 'components/ErrorMessage';
 import { InputHTMLAttributes } from 'react';
+import { ErrorMessage } from 'components';
 import { InputWrapper, Label, InputBase } from './styles';
 
 interface IProps extends InputHTMLAttributes<HTMLInputElement> {

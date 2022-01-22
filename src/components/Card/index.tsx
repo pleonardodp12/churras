@@ -1,5 +1,4 @@
-import { PriceTotal } from 'components/PriceTotal/intex';
-import { QuantityPeoples } from 'components/QuantityPeoples';
+import { PriceTotal, QuantityPeoples } from 'components';
 import { CardWrapper, Title, RegularText, FooterCard } from './styles';
 
 interface IProps {
@@ -8,6 +7,7 @@ interface IProps {
 
 export function Card(props: IProps) {
   const { onClick } = props;
+
   return (
     <CardWrapper onClick={onClick}>
       <Title>01/12</Title>

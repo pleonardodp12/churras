@@ -1,9 +1,7 @@
 import * as Yup from 'yup';
-import { Input } from 'components/Input';
-import { PrimaryButton } from 'components/PrimaryButton';
+import { Input, PasswordInput, PrimaryButton } from 'components';
 import { useForm } from 'hooks/useForm';
 import { ErrorMessages } from 'utils/constants';
-import { PasswordInput } from 'components/PasswordInput';
 import { useHistory } from 'react-router-dom';
 import { WrapperForm } from './styles';
 
