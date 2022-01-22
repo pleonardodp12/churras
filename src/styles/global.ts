@@ -22,7 +22,7 @@ export default createGlobalStyle`
     height: 100vh;
     left: 0;
     top: 0;
-    z-index: 2;
+    z-index: -1;
     background: linear-gradient(transparent, #FFD836 60%);
   }
   button,
