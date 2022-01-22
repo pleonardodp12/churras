@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import ImageBackground from 'assets/background.svg';
 
 export default createGlobalStyle`
@@ -39,4 +39,12 @@ export default createGlobalStyle`
   button {
     cursor: pointer;
   }
+`;
+
+export const WrapperScreen = styled.div`
+  width: 100%;
+  height: 100%;
+  margin-top: 128px;
+  position: relative;
+  background-color: ${({ theme }) => theme.colors.white};
 `;

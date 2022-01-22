@@ -4,6 +4,7 @@ import { PrimaryButton } from 'components/PrimaryButton';
 import { useForm } from 'hooks/useForm';
 import { ErrorMessages } from 'utils/constants';
 import { PasswordInput } from 'components/PasswordInput';
+import { useHistory } from 'react-router-dom';
 import { WrapperForm } from './styles';
 
 interface IFormLogin {
@@ -22,8 +23,10 @@ const validationSchema = Yup.object().shape({
 });
 
 export function Login() {
-  const onSubmit = async (values: IFormLogin) => {
+  const history = useHistory();
+  const onSubmit = (values: IFormLogin) => {
     console.log(values);
+    history.push('churras');
   };
 
   const { errors, fieldProps, handleSubmit, hasError } = useForm<IFormLogin>({
