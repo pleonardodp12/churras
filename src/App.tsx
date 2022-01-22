@@ -1,5 +1,6 @@
-import React from 'react';
 import { ThemeProvider } from 'styled-components';
+import { Title } from 'components/Title';
+import { AppRoute } from 'routes/router';
 import GlobalStyles from './styles/global';
 import { theme } from './styles/theme';
 
@@ -7,7 +8,8 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <h1>Hello Churras!</h1>
+      <Title text="Agenda de Churras" />
+      <AppRoute />
     </ThemeProvider>
   );
 }

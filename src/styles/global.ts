@@ -11,6 +11,8 @@ export default createGlobalStyle`
   body {
     background: url(${ImageBackground}) repeat 85vw -25vh;
     background-color: ${({ theme }) => theme.colors.primary};
+    display: flex;
+    justify-content: center;
   }
   body:before {
     content: "";
