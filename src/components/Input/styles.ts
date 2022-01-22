@@ -5,10 +5,12 @@ interface TInputProps {
 }
 
 export const InputWrapper = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
   max-width: 282px;
+  margin-bottom: 16px;
 `;
 
 export const Label = styled.span`
@@ -28,4 +30,10 @@ export const InputBase = styled.input<TInputProps>`
   &:focus {
     border: 1px solid ${({ theme }) => theme.colors.blackLight};
   }
+`;
+
+export const ContentIconPassword = styled.div`
+  position: absolute;
+  top: 46px;
+  right: 16px;
 `;

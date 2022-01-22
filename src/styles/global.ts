@@ -11,8 +11,15 @@ export default createGlobalStyle`
   body {
     background: url(${ImageBackground}) repeat 85vw -25vh;
     background-color: ${({ theme }) => theme.colors.primary};
+
+  }
+  body #root {
+    width: 100%;
+    height: 100vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
   }
   body:before {
     content: "";

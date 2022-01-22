@@ -6,6 +6,7 @@ export const theme = {
   colors: {
     primary: '#FFD836',
     black: '#000000',
+    white: '#FFFFFF',
     blackLight: '#00000088',
   },
 };
