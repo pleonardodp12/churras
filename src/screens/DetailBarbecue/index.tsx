@@ -1,3 +1,4 @@
+import { AddButton } from 'components/AddButton';
 import { PriceTotal } from 'components/PriceTotal/intex';
 import { QuantityPeoples } from 'components/QuantityPeoples';
 import { WrapperScreen } from 'styles/global';
@@ -31,6 +32,7 @@ export function DetailBarbecue() {
           <ListItem paid />
           <ListItem paid />
           <ListItem paid />
+          <AddButton />
         </ListContainer>
       </WrapperOutSide>
     </WrapperScreen>
