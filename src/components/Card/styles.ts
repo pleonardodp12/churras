@@ -32,12 +32,4 @@ export const FooterCard = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  > section {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    p {
-      margin-left: 4px;
-    }
-  }
 `;

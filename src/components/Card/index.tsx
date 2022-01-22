@@ -1,26 +1,20 @@
-import { CurrencyCircleDollar, Users } from 'phosphor-react';
-import { useTheme } from 'styled-components';
+import { PriceTotal } from 'components/PriceTotal/intex';
+import { QuantityPeoples } from 'components/QuantityPeoples';
 import { CardWrapper, Title, RegularText, FooterCard } from './styles';
 
-export function Card() {
-  const { colors } = useTheme();
+interface IProps {
+  onClick: () => void;
+}
+
+export function Card(props: IProps) {
+  const { onClick } = props;
   return (
-    <CardWrapper>
+    <CardWrapper onClick={onClick}>
       <Title>01/12</Title>
       <RegularText>Niver do Gui</RegularText>
       <FooterCard>
-        <section>
-          <Users size={28} color={colors.primary} />
-          <RegularText>12</RegularText>
-        </section>
-        <section>
-          <CurrencyCircleDollar
-            size={28}
-            color={colors.primary}
-            weight="fill"
-          />
-          <RegularText>R$140</RegularText>
-        </section>
+        <PriceTotal currencyBarbecue={280} />
+        <QuantityPeoples quantity={12} />
       </FooterCard>
     </CardWrapper>
   );
