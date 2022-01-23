@@ -5,8 +5,13 @@ import { WrapperOutSide } from './styles';
 
 export function ListBarbecue() {
   const history = useHistory();
+
   const redirectToDetailBarbecue = (id: string) => {
     history.push(`churras/${id}`);
+  };
+
+  const redirectCreateBarbecue = () => {
+    history.push('churras-novo');
   };
 
   return (
@@ -15,7 +20,7 @@ export function ListBarbecue() {
         <Card onClick={() => redirectToDetailBarbecue('1')} />
         <Card onClick={() => redirectToDetailBarbecue('2')} />
         <Card onClick={() => redirectToDetailBarbecue('3')} />
-        <ButtonCreateBarbecue />
+        <ButtonCreateBarbecue onClick={redirectCreateBarbecue} />
       </WrapperOutSide>
     </WrapperScreen>
   );

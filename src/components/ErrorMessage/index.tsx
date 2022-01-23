@@ -1,11 +1,11 @@
 import { ReactNode } from 'react';
 import { ErrorText } from './styles';
 
-type TProps = {
+interface IProps {
   children: ReactNode;
-};
+}
 
-export function ErrorMessage(props: TProps) {
+export function ErrorMessage(props: IProps) {
   const { children } = props;
   return <ErrorText>{children}</ErrorText>;
 }

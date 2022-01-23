@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-interface TInputProps {
+interface IInputProps {
   isInvalid: boolean;
 }
 
@@ -19,12 +19,12 @@ export const Label = styled.span`
   margin-bottom: 8px;
 `;
 
-export const InputBase = styled.input<TInputProps>`
+export const InputBase = styled.input<IInputProps>`
   height: 42px;
   padding: 4px 8px;
   border-radius: 2px;
-  border: ${({ isInvalid }) =>
-    isInvalid ? '1px solid red' : '1px solid transparent'};
+  border: ${({ isInvalid, theme }) =>
+    isInvalid ? '1px solid red' : `1px solid ${theme.colors.gray}`};
   transition: border 0.3s;
   font-size: 18px;
   &:focus {

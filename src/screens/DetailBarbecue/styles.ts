@@ -11,7 +11,7 @@ export const WrapperOutSide = styled.div`
   border-radius: 2px;
   background-color: ${({ theme }) => theme.colors.white};
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.06);
-  margin: -80px auto 0 auto;
+  margin: -80px auto 48px auto;
   position: relative;
   display: flex;
   flex-wrap: wrap;

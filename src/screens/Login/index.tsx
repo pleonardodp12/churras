@@ -22,6 +22,7 @@ const validationSchema = Yup.object().shape({
 
 export function Login() {
   const history = useHistory();
+
   const onSubmit = (values: IFormLogin) => {
     console.log(values);
     history.push('churras');
@@ -39,12 +40,14 @@ export function Login() {
         <Input
           label="Email"
           {...fieldProps('login')}
+          placeholder="Digite seu email"
           isInvalid={hasError('login')}
           error={errors.login}
         />
         <PasswordInput
           label="Senha"
           {...fieldProps('password')}
+          placeholder="Digite sua senha"
           isInvalid={hasError('password')}
           error={errors.password}
         />

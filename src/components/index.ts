@@ -8,3 +8,4 @@ export { Title } from './Title';
 export { PriceTotal } from './PriceTotal';
 export { QuantityPeoples } from './QuantityPeoples';
 export { PrimaryButton } from './PrimaryButton';
+export { DatePickerInput } from './DatePickerInput';

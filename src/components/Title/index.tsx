@@ -1,10 +1,10 @@
 import { Text } from './styles';
 
-type TProps = {
+type IProps = {
   text: string;
 };
 
-export function Title(props: TProps) {
+export function Title(props: IProps) {
   const { text } = props;
   return <Text>{text}</Text>;
 }
