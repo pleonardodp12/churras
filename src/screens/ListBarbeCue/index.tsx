@@ -1,4 +1,6 @@
 import { ButtonCreateBarbecue, Card } from 'components';
+import { IResponseBarbecues } from 'context/barbecueContext';
+import { useBarbecue } from 'hooks/useBarbecue';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import api from 'services/api';
@@ -7,6 +9,7 @@ import { WrapperOutSide } from './styles';
 
 export function ListBarbecue() {
   const history = useHistory();
+  const { barbecues, setBarbecues } = useBarbecue();
 
   const redirectToDetailBarbecue = (id: string) => {
     history.push(`churras/${id}`);
@@ -17,9 +20,9 @@ export function ListBarbecue() {
   };
 
   const handleBarbecues = async () => {
-    const response = await api.get('/barbecues');
-
-    console.log('response', response);
+    const { data } = await api.get<IResponseBarbecues>('/barbecues');
+    if (!data.success) return;
+    setBarbecues(data.result);
   };
 
   useEffect(() => {
@@ -29,9 +32,12 @@ export function ListBarbecue() {
   return (
     <WrapperScreen>
       <WrapperOutSide>
-        <Card onClick={() => redirectToDetailBarbecue('1')} />
-        <Card onClick={() => redirectToDetailBarbecue('2')} />
-        <Card onClick={() => redirectToDetailBarbecue('3')} />
+        {barbecues?.map((barbecue) => (
+          <Card
+            barbecue={barbecue}
+            onClick={() => redirectToDetailBarbecue(barbecue.id)}
+          />
+        ))}
         <ButtonCreateBarbecue onClick={redirectCreateBarbecue} />
       </WrapperOutSide>
     </WrapperScreen>

@@ -1,20 +1,23 @@
 import { PriceTotal, QuantityPeoples } from 'components';
+import { IBarbecue } from 'context/barbecueContext';
+import { getTotalMoney } from 'utils/helpers';
 import { CardWrapper, Title, RegularText, FooterCard } from './styles';
 
 interface IProps {
   onClick: () => void;
+  barbecue: IBarbecue;
 }
 
 export function Card(props: IProps) {
-  const { onClick } = props;
+  const { onClick, barbecue } = props;
 
   return (
     <CardWrapper onClick={onClick}>
-      <Title>01/12</Title>
-      <RegularText>Niver do Gui</RegularText>
+      <Title>{barbecue.date}</Title>
+      <RegularText>{barbecue.reason}</RegularText>
       <FooterCard>
-        <PriceTotal currency={280} />
-        <QuantityPeoples quantity={12} />
+        <PriceTotal currency={getTotalMoney(barbecue.peoples)} />
+        <QuantityPeoples quantity={barbecue.peoples.length} />
       </FooterCard>
     </CardWrapper>
   );
