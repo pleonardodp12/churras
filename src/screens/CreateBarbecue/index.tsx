@@ -6,6 +6,8 @@ import { DatePickerInput, Input, InputRange, PrimaryButton } from 'components';
 import { useEffect, useState } from 'react';
 import { ErrorMessages } from 'utils/constants';
 import moment from 'moment';
+import api from 'services/api';
+import { IResponseBarbecues } from 'context/barbecueContext';
 import { WrapperOutSide, TitlePage } from './styles';
 
 interface IFormCreateBarbecue {
@@ -41,8 +43,10 @@ export function CreateBarbecue() {
   const history = useHistory();
   const [startDate, setStartDate] = useState<Date>(new Date());
 
-  const onSubmit = (values: IFormCreateBarbecue) => {
-    console.log(values);
+  const onSubmit = async (values: IFormCreateBarbecue) => {
+    const { data } = await api.post<IResponseBarbecues>('/barbecues', values);
+    if (!data.success) return;
+    history.push('churras');
   };
 
   const { errors, fieldProps, handleSubmit, hasError, setValue, values } =

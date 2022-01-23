@@ -1,5 +1,5 @@
 import { InputHTMLAttributes } from 'react';
-import { ErrorMessage, PriceTotal } from 'components';
+import { ErrorMessage, PriceTotal, Input } from 'components';
 import { Label } from 'components/Input/styles';
 import { InputWrapper, InputBase } from './styles';
 
@@ -21,7 +21,7 @@ export function InputRange(props: IProps) {
       </Label>
       <div>
         {min}
-        <InputBase isInvalid={isInvalid} {...rest} type="range" />
+        <InputBase isInvalid={isInvalid} {...rest} type="range" step={0.5} />
         {max}
       </div>
       {isInvalid && <ErrorMessage>{error}</ErrorMessage>}
