@@ -43,8 +43,8 @@ export default createGlobalStyle`
 
 export const WrapperScreen = styled.div`
   width: 100%;
-  height: 100%;
-  margin-top: 128px;
-  position: relative;
+  min-height: calc(100% - 248px);
+  margin-top: 248px;
+  position: absolute;
   background-color: ${({ theme }) => theme.colors.white};
 `;

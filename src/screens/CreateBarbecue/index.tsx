@@ -42,9 +42,12 @@ const validationSchema = Yup.object().shape({
 export function CreateBarbecue() {
   const history = useHistory();
   const [startDate, setStartDate] = useState<Date>(new Date());
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async (values: IFormCreateBarbecue) => {
+    setIsLoading(true);
     const { data } = await api.post<IResponseBarbecues>('/barbecues', values);
+    setIsLoading(false);
     if (!data.success) return;
     history.push('churras');
   };
@@ -103,7 +106,7 @@ export function CreateBarbecue() {
             min={0}
             max={100}
           />
-          <PrimaryButton label="Criar" type="submit" />
+          <PrimaryButton label="Criar" type="submit" loading={isLoading} />
         </form>
       </WrapperOutSide>
     </WrapperScreen>
