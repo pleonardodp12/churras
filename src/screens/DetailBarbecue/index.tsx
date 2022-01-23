@@ -2,6 +2,7 @@ import {
   AddButton,
   EmpityState,
   PriceTotal,
+  PrimaryButton,
   QuantityPeoples,
 } from 'components';
 import { useEffect, useState } from 'react';
@@ -10,8 +11,9 @@ import { getTotalMoney } from 'utils/helpers';
 import empityIcon from 'assets/icon-empity-state.svg';
 import { useBarbecue } from 'hooks/useBarbecue';
 import api from 'services/api';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { IResponseBarbecue } from 'context/barbecueContext';
+import { SecondaryButton } from 'components/SecondaryButton';
 import { ListItem } from './components/ListItem';
 import {
   WrapperOutSide,
@@ -21,6 +23,7 @@ import {
   Title,
   Description,
   ListContainer,
+  ContainerButtons,
 } from './styles';
 import { FormNewPeople } from './components/FormNewPeople';
 
@@ -30,6 +33,7 @@ interface IExtendParams {
 
 export function DetailBarbecue() {
   const params = useParams<IExtendParams>();
+  const history = useHistory();
   const { selectedBarbecue, setSelectedBarbecue } = useBarbecue();
   const [modalNewPeople, setModalNewPeople] = useState(false);
 
@@ -47,6 +51,14 @@ export function DetailBarbecue() {
 
   const handleModalNewPeople = () => {
     setModalNewPeople((prevState) => !prevState);
+  };
+
+  const handleSaveConfirmations = () => {
+    console.log(selectedBarbecue);
+  };
+
+  const handleBackToListBarbecues = () => {
+    history.push('/churras');
   };
 
   return (
@@ -83,6 +95,17 @@ export function DetailBarbecue() {
 
             <AddButton onClick={handleModalNewPeople} />
           </ListContainer>
+          <ContainerButtons>
+            <SecondaryButton
+              label="Voltar"
+              onClick={handleBackToListBarbecues}
+            />
+            <PrimaryButton
+              label="Salvar"
+              onClick={handleSaveConfirmations}
+              type="button"
+            />
+          </ContainerButtons>
         </WrapperOutSide>
       )}
     </WrapperScreen>

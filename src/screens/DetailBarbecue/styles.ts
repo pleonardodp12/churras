@@ -90,7 +90,7 @@ export const Check = styled.div<IPropsPrice>`
 export const Form = styled.form`
   width: 100%;
   height: 100%;
-  min-height: 480px;
+  max-height: 480px;
   padding: 48px;
   position: absolute;
   background-color: white;
@@ -99,8 +99,7 @@ export const Form = styled.form`
   left: 50%;
   z-index: 2;
   transform: translate(-50%, -50%);
-
-  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.6);
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -120,4 +119,11 @@ export const CloseButton = styled.div`
   &:hover {
     opacity: 0.6;
   }
+`;
+
+export const ContainerButtons = styled.div`
+  width: 100%;
+  display: flex;
+  margin-top: 16px;
+  gap: 8px;
 `;
