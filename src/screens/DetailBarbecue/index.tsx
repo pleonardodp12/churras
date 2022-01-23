@@ -22,7 +22,7 @@ export function DetailBarbecue() {
           </ContentRight>
           <ContentLeft>
             <QuantityPeoples quantity={15} />
-            <PriceTotal currencyBarbecue={112.4} />
+            <PriceTotal currency={112.4} />
           </ContentLeft>
         </Header>
         <ListContainer>

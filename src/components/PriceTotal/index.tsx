@@ -4,17 +4,17 @@ import { formatCurrencyBRL } from 'utils/helpers';
 import { Text, Wrapper } from './styles';
 
 interface IProps {
-  currencyBarbecue: number;
+  currency: number;
 }
 
 export function PriceTotal(props: IProps) {
-  const { currencyBarbecue } = props;
+  const { currency } = props;
   const { colors } = useTheme();
 
   return (
     <Wrapper>
       <CurrencyCircleDollar size={24} color={colors.primary} weight="fill" />
-      <Text>{formatCurrencyBRL(currencyBarbecue)}</Text>
+      <Text>{formatCurrencyBRL(currency)}</Text>
     </Wrapper>
   );
 }

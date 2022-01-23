@@ -1,5 +1,7 @@
 import { ButtonCreateBarbecue, Card } from 'components';
+import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import api from 'services/api';
 import { WrapperScreen } from 'styles/global';
 import { WrapperOutSide } from './styles';
 
@@ -13,6 +15,16 @@ export function ListBarbecue() {
   const redirectCreateBarbecue = () => {
     history.push('churras-novo');
   };
+
+  const handleBarbecues = async () => {
+    const response = await api.get('/barbecues');
+
+    console.log('response', response);
+  };
+
+  useEffect(() => {
+    handleBarbecues();
+  }, []);
 
   return (
     <WrapperScreen>

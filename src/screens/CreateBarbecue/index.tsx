@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 import { useHistory } from 'react-router-dom';
 import { WrapperScreen } from 'styles/global';
 import { useForm } from 'hooks/useForm';
-import { DatePickerInput, Input, PrimaryButton } from 'components';
+import { DatePickerInput, Input, InputRange, PrimaryButton } from 'components';
 import { useEffect, useState } from 'react';
 import { ErrorMessages } from 'utils/constants';
 import moment from 'moment';
@@ -45,7 +45,7 @@ export function CreateBarbecue() {
     console.log(values);
   };
 
-  const { errors, fieldProps, handleSubmit, hasError, setValue } =
+  const { errors, fieldProps, handleSubmit, hasError, setValue, values } =
     useForm<IFormCreateBarbecue>({
       initialValues,
       onSubmit,
@@ -79,6 +79,25 @@ export function CreateBarbecue() {
             value={startDate}
             onChange={setStartDate}
             error={errors.date}
+          />
+          <InputRange
+            label="Preço com bebida"
+            isInvalid={hasError('priceDrink')}
+            {...fieldProps('priceDrink')}
+            error={errors.priceDrink}
+            value={values.priceDrink}
+            min={0}
+            max={100}
+          />
+
+          <InputRange
+            label="Preço sem bebida"
+            isInvalid={hasError('priceWithoutDrink')}
+            {...fieldProps('priceWithoutDrink')}
+            error={errors.priceWithoutDrink}
+            value={values.priceWithoutDrink}
+            min={0}
+            max={100}
           />
           <PrimaryButton label="Criar" type="submit" />
         </form>

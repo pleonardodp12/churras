@@ -13,7 +13,7 @@ export function Card(props: IProps) {
       <Title>01/12</Title>
       <RegularText>Niver do Gui</RegularText>
       <FooterCard>
-        <PriceTotal currencyBarbecue={280} />
+        <PriceTotal currency={280} />
         <QuantityPeoples quantity={12} />
       </FooterCard>
     </CardWrapper>
