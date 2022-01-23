@@ -12,7 +12,13 @@ export function ListBarbecue() {
   const { barbecues, setBarbecues } = useBarbecue();
 
   const redirectToDetailBarbecue = (id: string) => {
-    history.push(`churras/${id}`);
+    const selectedBarbecue = barbecues.find((barbecue) => barbecue.id === id);
+    history.push({
+      pathname: `churras/${id}`,
+      state: {
+        barbecue: selectedBarbecue,
+      },
+    });
   };
 
   const redirectCreateBarbecue = () => {
