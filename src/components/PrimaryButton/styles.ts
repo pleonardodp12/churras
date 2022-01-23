@@ -12,8 +12,10 @@ export const Button = styled.button`
   align-items: center;
   justify-content: center;
   border: none;
-  transition: filter 0.3s;
+  transition: filter box-shadow 0.3s;
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.06);
   &:hover {
     filter: brightness(0.8);
+    box-shadow: none;
   }
 `;

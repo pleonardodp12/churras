@@ -1,9 +1,15 @@
-import { AddButton, PriceTotal, QuantityPeoples } from 'components';
+import {
+  AddButton,
+  EmpityState,
+  PriceTotal,
+  QuantityPeoples,
+} from 'components';
 import { IBarbecue } from 'context/barbecueContext';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { WrapperScreen } from 'styles/global';
 import { getTotalMoney } from 'utils/helpers';
+import empityIcon from 'assets/icon-empity-state.svg';
 import { ListItem } from './components/ListItem';
 import {
   WrapperOutSide,
@@ -47,9 +53,16 @@ export function DetailBarbecue() {
         </Header>
 
         <ListContainer>
-          {barbecue?.peoples.map((people) => (
-            <ListItem paid={people?.confirm} />
-          ))}
+          {barbecue?.peoples.length === 0 ? (
+            <EmpityState
+              icon={empityIcon}
+              message="Por enquanto ninguém foi cadastrado"
+            />
+          ) : (
+            barbecue?.peoples.map((people) => (
+              <ListItem paid={people?.confirm} />
+            ))
+          )}
           <AddButton />
         </ListContainer>
       </WrapperOutSide>
