@@ -90,6 +90,7 @@ export const Check = styled.div<IPropsPrice>`
 export const Form = styled.form`
   width: 100%;
   height: 100%;
+  min-height: 480px;
   padding: 48px;
   position: absolute;
   background-color: white;

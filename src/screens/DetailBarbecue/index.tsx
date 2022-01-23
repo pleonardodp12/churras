@@ -4,12 +4,14 @@ import {
   PriceTotal,
   QuantityPeoples,
 } from 'components';
-import { IBarbecue } from 'context/barbecueContext';
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import { WrapperScreen } from 'styles/global';
 import { getTotalMoney } from 'utils/helpers';
 import empityIcon from 'assets/icon-empity-state.svg';
+import { useBarbecue } from 'hooks/useBarbecue';
+import api from 'services/api';
+import { useParams } from 'react-router-dom';
+import { IResponseBarbecue } from 'context/barbecueContext';
 import { ListItem } from './components/ListItem';
 import {
   WrapperOutSide,
@@ -22,55 +24,67 @@ import {
 } from './styles';
 import { FormNewPeople } from './components/FormNewPeople';
 
-interface IState {
-  state: {
-    barbecue: IBarbecue;
-  };
+interface IExtendParams {
+  id: string;
 }
 
 export function DetailBarbecue() {
-  const location = useLocation<any | IState>();
-  const [barbecue, setBarbecue] = useState<IBarbecue>();
-  const [addNewPeople, setAddNewPeople] = useState(false);
+  const params = useParams<IExtendParams>();
+  const { selectedBarbecue, setSelectedBarbecue } = useBarbecue();
+  const [modalNewPeople, setModalNewPeople] = useState(false);
+
+  const handleBarbecue = async () => {
+    const { data } = await api.get<IResponseBarbecue>(`barbecues/${params.id}`);
+    if (!data.success) return;
+    setSelectedBarbecue(data.result);
+  };
 
   useEffect(() => {
-    if (location.state) {
-      setBarbecue(location.state.barbecue);
+    if (!selectedBarbecue?.id) {
+      handleBarbecue();
     }
-  }, [location.state, barbecue]);
+  }, [selectedBarbecue]);
+
+  const handleModalNewPeople = () => {
+    setModalNewPeople((prevState) => !prevState);
+  };
 
   return (
     <WrapperScreen>
-      <WrapperOutSide>
-        <Header>
-          <ContentRight>
-            <Title>{barbecue?.date}</Title>
-            <Description>{barbecue?.reason}</Description>
-          </ContentRight>
+      {selectedBarbecue && (
+        <WrapperOutSide>
+          <Header>
+            <ContentRight>
+              <Title>{selectedBarbecue?.date}</Title>
+              <Description>{selectedBarbecue?.reason}</Description>
+            </ContentRight>
 
-          <ContentLeft>
-            <QuantityPeoples quantity={barbecue?.peoples.length || 0} />
-            <PriceTotal currency={getTotalMoney(barbecue?.peoples || [])} />
-          </ContentLeft>
-        </Header>
+            <ContentLeft>
+              <QuantityPeoples quantity={selectedBarbecue?.peoples?.length} />
+              <PriceTotal currency={getTotalMoney(selectedBarbecue?.peoples)} />
+            </ContentLeft>
+          </Header>
 
-        <ListContainer>
-          {barbecue?.peoples.length === 0 ? (
-            <EmpityState
-              icon={empityIcon}
-              message="Por enquanto ninguém foi cadastrado"
-            />
-          ) : (
-            barbecue?.peoples.map((people) => (
-              <ListItem paid={people?.confirm} />
-            ))
-          )}
-          {addNewPeople && (
-            <FormNewPeople closeModalNewPeople={() => setAddNewPeople(false)} />
-          )}
-          <AddButton onClick={() => setAddNewPeople(true)} />
-        </ListContainer>
-      </WrapperOutSide>
+          <ListContainer>
+            {selectedBarbecue?.peoples?.length === 0 ? (
+              <EmpityState
+                icon={empityIcon}
+                message="Por enquanto ninguém foi cadastrado"
+              />
+            ) : (
+              selectedBarbecue?.peoples?.map((people) => (
+                <ListItem people={people} />
+              ))
+            )}
+
+            {modalNewPeople && (
+              <FormNewPeople closeModalNewPeople={handleModalNewPeople} />
+            )}
+
+            <AddButton onClick={handleModalNewPeople} />
+          </ListContainer>
+        </WrapperOutSide>
+      )}
     </WrapperScreen>
   );
 }

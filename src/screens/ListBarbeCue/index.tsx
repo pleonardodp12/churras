@@ -9,16 +9,13 @@ import { WrapperOutSide } from './styles';
 
 export function ListBarbecue() {
   const history = useHistory();
-  const { barbecues, setBarbecues } = useBarbecue();
+  const { barbecues, setBarbecues, setSelectedBarbecue } = useBarbecue();
 
   const redirectToDetailBarbecue = (id: string) => {
     const selectedBarbecue = barbecues.find((barbecue) => barbecue.id === id);
-    history.push({
-      pathname: `churras/${id}`,
-      state: {
-        barbecue: selectedBarbecue,
-      },
-    });
+    if (!selectedBarbecue) return;
+    setSelectedBarbecue(selectedBarbecue);
+    history.push(`churras/${id}`);
   };
 
   const redirectCreateBarbecue = () => {
