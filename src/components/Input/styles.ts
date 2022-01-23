@@ -13,7 +13,7 @@ export const InputWrapper = styled.div`
   margin-bottom: 16px;
 `;
 
-export const Label = styled.span`
+export const Label = styled.label`
   font-size: 21px;
   font-weight: bold;
   margin-bottom: 8px;

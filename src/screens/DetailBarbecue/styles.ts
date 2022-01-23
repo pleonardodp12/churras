@@ -86,3 +86,37 @@ export const Check = styled.div<IPropsPrice>`
   background-color: ${({ paid, theme }) =>
     paid ? theme.colors.primary : theme.colors.white};
 `;
+
+export const Form = styled.form`
+  width: 100%;
+  height: 100%;
+  padding: 48px;
+  position: absolute;
+  background-color: white;
+  align-self: center;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  button {
+    align-self: center;
+    margin-bottom: 24px;
+  }
+`;
+
+export const CloseButton = styled.div`
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  transition: opacity 0.3s;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.6;
+  }
+`;

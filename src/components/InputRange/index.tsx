@@ -1,5 +1,5 @@
 import { InputHTMLAttributes } from 'react';
-import { ErrorMessage, PriceTotal, Input } from 'components';
+import { ErrorMessage, PriceTotal } from 'components';
 import { Label } from 'components/Input/styles';
 import { InputWrapper, InputBase } from './styles';
 

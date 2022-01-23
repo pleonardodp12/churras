@@ -12,3 +12,4 @@ export { DatePickerInput } from './DatePickerInput';
 export { InputRange } from './InputRange';
 export { EmpityState } from './EmpityState';
 export { Spinner } from './Spinner';
+export { CheckBoxBeer } from './CheckBoxBeer';

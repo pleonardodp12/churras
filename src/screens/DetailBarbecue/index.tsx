@@ -20,6 +20,7 @@ import {
   Description,
   ListContainer,
 } from './styles';
+import { FormNewPeople } from './components/FormNewPeople';
 
 interface IState {
   state: {
@@ -30,6 +31,7 @@ interface IState {
 export function DetailBarbecue() {
   const location = useLocation<any | IState>();
   const [barbecue, setBarbecue] = useState<IBarbecue>();
+  const [addNewPeople, setAddNewPeople] = useState(false);
 
   useEffect(() => {
     if (location.state) {
@@ -63,7 +65,10 @@ export function DetailBarbecue() {
               <ListItem paid={people?.confirm} />
             ))
           )}
-          <AddButton />
+          {addNewPeople && (
+            <FormNewPeople closeModalNewPeople={() => setAddNewPeople(false)} />
+          )}
+          <AddButton onClick={() => setAddNewPeople(true)} />
         </ListContainer>
       </WrapperOutSide>
     </WrapperScreen>
