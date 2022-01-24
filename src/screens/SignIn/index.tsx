@@ -4,22 +4,30 @@ import { useForm } from 'hooks/useForm';
 import { ErrorMessages } from 'utils/constants';
 import { useHistory } from 'react-router-dom';
 import { SecondaryButton } from 'components/SecondaryButton';
+import { toast } from 'react-toastify';
 import { useLoading } from 'hooks/useLoading';
-import { useEffect } from 'react';
+import api from 'services/api';
 import { WrapperForm } from './styles';
 
 interface IFormLogin {
-  login: string;
+  email: string;
   password: string;
 }
 
+interface IResponseLogin {
+  success: boolean;
+  token: string;
+  error: string;
+  result: string;
+}
+
 const initialValues: IFormLogin = {
-  login: '',
+  email: '',
   password: '',
 };
 
 const validationSchema = Yup.object().shape({
-  login: Yup.string()
+  email: Yup.string()
     .email(ErrorMessages.invalidEmail)
     .required(ErrorMessages.loginRequired),
   password: Yup.string().required(ErrorMessages.passwordRequired),
@@ -29,13 +37,23 @@ export function SignIn() {
   const history = useHistory();
   const { setLoading } = useLoading();
 
-  useEffect(() => {
+  const onSubmit = async (values: IFormLogin) => {
+    const { email, password } = values;
+    setLoading(true);
+    const { data } = await api.post<IResponseLogin>('/signin', {
+      email,
+      password,
+    });
     setLoading(false);
-  }, []);
+    if (data.error) {
+      return toast.error(data.error);
+    }
+    if (!data.success) {
+      return toast.error(data.result);
+    }
 
-  const onSubmit = (values: IFormLogin) => {
-    console.log(values);
-    history.push('churras');
+    localStorage.setItem('token', data.token);
+    return history.push('churras');
   };
 
   const { errors, fieldProps, handleSubmit, hasError } = useForm<IFormLogin>({
@@ -53,10 +71,10 @@ export function SignIn() {
       <form onSubmit={handleSubmit}>
         <Input
           label="Email"
-          {...fieldProps('login')}
+          {...fieldProps('email')}
           placeholder="Digite seu email"
-          isInvalid={hasError('login')}
-          error={errors.login}
+          isInvalid={hasError('email')}
+          error={errors.email}
         />
 
         <PasswordInput
