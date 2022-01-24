@@ -1,6 +1,8 @@
+import { ReactNode } from 'react';
+import { AuthProvider } from 'context/authContext';
 import { BarbecueProvider } from 'context/barbecueContext';
 import { LoadingProvider } from 'context/loadingContext';
-import { ReactNode } from 'react';
+import { CookiesProvider } from 'react-cookie';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'styles/theme';
 
@@ -12,10 +14,14 @@ export function Providers(props: Props) {
   const { children } = props;
 
   return (
-    <BarbecueProvider>
-      <LoadingProvider>
-        <ThemeProvider theme={theme}>{children}</ThemeProvider>
-      </LoadingProvider>
-    </BarbecueProvider>
+    <CookiesProvider>
+      <AuthProvider>
+        <BarbecueProvider>
+          <LoadingProvider>
+            <ThemeProvider theme={theme}>{children}</ThemeProvider>
+          </LoadingProvider>
+        </BarbecueProvider>
+      </AuthProvider>
+    </CookiesProvider>
   );
 }

@@ -4,21 +4,13 @@ import { useForm } from 'hooks/useForm';
 import { ErrorMessages } from 'utils/constants';
 import { useHistory } from 'react-router-dom';
 import { SecondaryButton } from 'components/SecondaryButton';
-import { toast } from 'react-toastify';
 import { useLoading } from 'hooks/useLoading';
-import api from 'services/api';
+import { useAuth } from 'hooks/useAuth';
 import { WrapperForm } from './styles';
 
 interface IFormSignIn {
   email: string;
   password: string;
-}
-
-interface IResponseSignIn {
-  success: boolean;
-  token: string;
-  error: string;
-  result: string;
 }
 
 const initialValues: IFormSignIn = {
@@ -35,25 +27,16 @@ const validationSchema = Yup.object().shape({
 
 export function SignIn() {
   const history = useHistory();
+  const { signIn } = useAuth();
   const { setLoading } = useLoading();
 
   const onSubmit = async (values: IFormSignIn) => {
-    const { email, password } = values;
     setLoading(true);
-    const { data } = await api.post<IResponseSignIn>('/signin', {
-      email,
-      password,
-    });
+    const auth = await signIn(values);
     setLoading(false);
-    if (data.error) {
-      return toast.error(data.error);
+    if (auth) {
+      history.push('churras');
     }
-    if (!data.success) {
-      return toast.error(data.result);
-    }
-
-    localStorage.setItem('token', data.token);
-    return history.push('churras');
   };
 
   const { errors, fieldProps, handleSubmit, hasError } = useForm<IFormSignIn>({
