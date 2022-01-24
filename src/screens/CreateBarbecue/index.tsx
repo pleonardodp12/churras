@@ -1,13 +1,14 @@
 import * as Yup from 'yup';
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { WrapperScreen } from 'styles/global';
 import { useForm } from 'hooks/useForm';
 import { DatePickerInput, Input, InputRange, PrimaryButton } from 'components';
-import { useEffect, useState } from 'react';
-import { ErrorMessages } from 'utils/constants';
-import moment from 'moment';
-import api from 'services/api';
 import { IResponseBarbecues } from 'context/barbecueContext';
+import { toast } from 'react-toastify';
+import api from 'services/api';
+import moment from 'moment';
+import { ErrorMessages, SuccessMessages } from 'utils/constants';
 import { WrapperOutSide, TitlePage } from './styles';
 
 interface IFormCreateBarbecue {
@@ -48,8 +49,11 @@ export function CreateBarbecue() {
     setIsLoading(true);
     const { data } = await api.post<IResponseBarbecues>('/barbecues', values);
     setIsLoading(false);
-    if (!data.success) return;
-    history.push('churras');
+    if (!data.success) {
+      return toast.error(ErrorMessages.failedOnCreateChurras);
+    }
+    toast.success(SuccessMessages.successOnCreateChurras);
+    return history.push('churras');
   };
 
   const { errors, fieldProps, handleSubmit, hasError, setValue, values } =

@@ -1,10 +1,12 @@
+import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { ButtonCreateBarbecue, Card } from 'components';
 import { IResponseBarbecues } from 'context/barbecueContext';
 import { useBarbecue } from 'hooks/useBarbecue';
-import { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import api from 'services/api';
 import { WrapperScreen } from 'styles/global';
+import { ErrorMessages } from 'utils/constants';
 import { WrapperOutSide } from './styles';
 
 export function ListBarbecue() {
@@ -24,8 +26,10 @@ export function ListBarbecue() {
 
   const handleBarbecues = async () => {
     const { data } = await api.get<IResponseBarbecues>('/barbecues');
-    if (!data.success) return;
-    setBarbecues(data.result);
+    if (!data.success) {
+      return toast.error(ErrorMessages.failedToGetAllChurras);
+    }
+    return setBarbecues(data.result);
   };
 
   useEffect(() => {

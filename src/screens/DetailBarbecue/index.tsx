@@ -1,19 +1,22 @@
+import { useEffect, useState } from 'react';
 import {
   AddButton,
   EmpityState,
+  ErrorMessage,
   PriceTotal,
   PrimaryButton,
   QuantityPeoples,
 } from 'components';
-import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import { WrapperScreen } from 'styles/global';
 import { getTotalMoney } from 'utils/helpers';
 import empityIcon from 'assets/icon-empity-state.svg';
-import { useBarbecue } from 'hooks/useBarbecue';
 import api from 'services/api';
+import { useBarbecue } from 'hooks/useBarbecue';
 import { useHistory, useParams } from 'react-router-dom';
-import { IResponseBarbecue } from 'context/barbecueContext';
+import { IPeople, IResponseBarbecue } from 'context/barbecueContext';
 import { SecondaryButton } from 'components/SecondaryButton';
+import { ErrorMessages, SuccessMessages } from 'utils/constants';
 import { ListItem } from './components/ListItem';
 import {
   WrapperOutSide,
@@ -32,15 +35,18 @@ interface IExtendParams {
 }
 
 export function DetailBarbecue() {
-  const params = useParams<IExtendParams>();
   const history = useHistory();
+  const params = useParams<IExtendParams>();
   const { selectedBarbecue, setSelectedBarbecue } = useBarbecue();
   const [modalNewPeople, setModalNewPeople] = useState(false);
 
   const handleBarbecue = async () => {
     const { data } = await api.get<IResponseBarbecue>(`barbecues/${params.id}`);
-    if (!data.success) return;
-    setSelectedBarbecue(data.result);
+    if (!data.success) {
+      return toast.error(ErrorMessages.failedToGetChurras);
+    }
+
+    return setSelectedBarbecue(data.result);
   };
 
   useEffect(() => {
@@ -53,12 +59,33 @@ export function DetailBarbecue() {
     setModalNewPeople((prevState) => !prevState);
   };
 
-  const handleSaveConfirmations = () => {
-    console.log(selectedBarbecue);
+  const handleSaveConfirmations = async () => {
+    const { data } = await api.put(
+      `/barbecues/${selectedBarbecue.id}/confirm`,
+      {
+        peoples: selectedBarbecue.peoples,
+      },
+    );
+
+    if (!data.success) {
+      return toast.error(ErrorMessages.failedToSaveConfirmations);
+    }
+    toast.success(SuccessMessages.successOnSaveConfirmations);
+    return history.push('/churras');
   };
 
   const handleBackToListBarbecues = () => {
     history.push('/churras');
+  };
+
+  const handleConfirmPaid = (peopleSelected: IPeople, index: number) => {
+    const peoples = [...selectedBarbecue.peoples];
+    peoples[index].confirm = !peopleSelected.confirm;
+
+    setSelectedBarbecue({
+      ...selectedBarbecue,
+      peoples,
+    });
   };
 
   return (
@@ -84,8 +111,11 @@ export function DetailBarbecue() {
                 message="Por enquanto ninguém foi cadastrado"
               />
             ) : (
-              selectedBarbecue?.peoples?.map((people) => (
-                <ListItem people={people} />
+              selectedBarbecue?.peoples?.map((people, index) => (
+                <ListItem
+                  handleConfirmPaid={() => handleConfirmPaid(people, index)}
+                  people={people}
+                />
               ))
             )}
 

@@ -5,4 +5,14 @@ export enum ErrorMessages {
   dateRequired = 'Insira a data corretamente!',
   invalidDate = 'Data inválida!',
   previousDate = 'Selecione uma data futura!',
+  alreadySomeoneInChurras = 'Ja existe alguém com esse nome!',
+  failedOnCreateChurras = 'Não conseguimos salvar o seu churras! Tente novamente mais tarde!',
+  failedToGetChurras = 'Não conseguimos carregar o seu churras!',
+  failedToSaveConfirmations = 'Não conseguimos salvar as alterações!',
+  failedToGetAllChurras = 'Não conseguimos carregar os churras!',
+}
+
+export enum SuccessMessages {
+  successOnCreateChurras = 'Churras criado com sucesso!',
+  successOnSaveConfirmations = 'Alterações feitas com sucesso!',
 }

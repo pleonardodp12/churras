@@ -106,7 +106,8 @@ export const Form = styled.form`
 
   button {
     align-self: center;
-    margin-bottom: 24px;
+    margin-bottom: 8px;
+    height: 48px;
   }
 `;
 

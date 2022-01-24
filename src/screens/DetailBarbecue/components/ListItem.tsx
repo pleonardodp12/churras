@@ -4,12 +4,13 @@ import { ListItemBase, ListItemText, ListItemPrice, Check } from '../styles';
 
 interface IProps {
   people: IPeople;
+  handleConfirmPaid: () => void;
 }
 
 export function ListItem(props: IProps) {
-  const { people } = props;
+  const { people, handleConfirmPaid } = props;
   return (
-    <ListItemBase>
+    <ListItemBase onClick={handleConfirmPaid}>
       <ListItemText>
         <Check paid={people.confirm} />
         {people.name}

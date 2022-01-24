@@ -29,7 +29,7 @@ export const Option = styled.div<ICheck>`
   cursor: pointer;
   transition: 0.3s;
   img {
-    margin-right: 16px;
+    margin-right: 8px;
     filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.4));
   }
   &:hover {

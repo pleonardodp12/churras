@@ -1,11 +1,10 @@
 import * as Yup from 'yup';
-import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { ErrorMessages } from 'utils/constants';
 import { useForm } from 'hooks/useForm';
-import { CheckBoxBeer, Input, PrimaryButton } from 'components';
-import { X } from 'phosphor-react';
 import api from 'services/api';
+import { CheckBoxBeer, Input, PrimaryButton } from 'components';
+import { toast } from 'react-toastify';
+import { X } from 'phosphor-react';
 import { useBarbecue } from 'hooks/useBarbecue';
 import { Form, CloseButton } from '../styles';
 
@@ -29,9 +28,7 @@ const validationSchema = Yup.object().shape({
 
 export function FormNewPeople(props: IProps) {
   const { closeModalNewPeople } = props;
-  const history = useHistory();
   const { selectedBarbecue, setSelectedBarbecue } = useBarbecue();
-  const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async (values: IFormNewPeople) => {
     const valueFormated = {
@@ -41,15 +38,14 @@ export function FormNewPeople(props: IProps) {
         ? selectedBarbecue.priceDrink
         : selectedBarbecue.priceWithoutDrink,
     };
-
-    setIsLoading(true);
     const { data } = await api.post<{ success: boolean }>(
       `/barbecues/${selectedBarbecue.id}`,
       valueFormated,
     );
-    setIsLoading(false);
 
-    if (!data.success) return;
+    if (!data.success) {
+      return toast.error(ErrorMessages.alreadySomeoneInChurras);
+    }
 
     const peoples = [...selectedBarbecue.peoples];
     peoples.push(valueFormated);
@@ -58,7 +54,10 @@ export function FormNewPeople(props: IProps) {
       ...selectedBarbecue,
       peoples,
     });
-    closeModalNewPeople();
+
+    toast.success(`Sucesso ao adicionar ${values.name} no churras!`);
+
+    return closeModalNewPeople();
   };
 
   const { errors, fieldProps, handleSubmit, hasError, values, setValue } =
