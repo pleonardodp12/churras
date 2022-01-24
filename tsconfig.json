@@ -20,14 +20,12 @@
     "noEmit": true,
     "outDir": "./build",
     "jsx": "react-jsx",
-    "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "src/*"
-      ]
-    }
+    "baseUrl": "./src"
   },
   "include": [
-    "src"
+    "src",
+    "**/*.ts",
+    "**/*.tsx",
+    "*.d.ts"
   ]
 }
