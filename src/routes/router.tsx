@@ -2,8 +2,8 @@ import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import {
   SignIn,
   SignUp,
-  ListBarbecue,
   DetailBarbecue,
+  ListBarbecue,
   CreateBarbecue,
 } from 'screens';
 

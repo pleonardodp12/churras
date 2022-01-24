@@ -18,8 +18,16 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
+    "outDir": "./build",
     "jsx": "react-jsx",
-    "baseUrl": "./src"
+    "baseUrl": "./src",
+    "paths": {
+      "*": [
+        "*",
+        "screens/*",
+        "components/*"
+      ]
+    }
   },
   "include": [
     "src"
