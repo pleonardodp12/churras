@@ -9,19 +9,19 @@ import { useLoading } from 'hooks/useLoading';
 import api from 'services/api';
 import { WrapperForm } from './styles';
 
-interface IFormLogin {
+interface IFormSignIn {
   email: string;
   password: string;
 }
 
-interface IResponseLogin {
+interface IResponseSignIn {
   success: boolean;
   token: string;
   error: string;
   result: string;
 }
 
-const initialValues: IFormLogin = {
+const initialValues: IFormSignIn = {
   email: '',
   password: '',
 };
@@ -37,10 +37,10 @@ export function SignIn() {
   const history = useHistory();
   const { setLoading } = useLoading();
 
-  const onSubmit = async (values: IFormLogin) => {
+  const onSubmit = async (values: IFormSignIn) => {
     const { email, password } = values;
     setLoading(true);
-    const { data } = await api.post<IResponseLogin>('/signin', {
+    const { data } = await api.post<IResponseSignIn>('/signin', {
       email,
       password,
     });
@@ -56,7 +56,7 @@ export function SignIn() {
     return history.push('churras');
   };
 
-  const { errors, fieldProps, handleSubmit, hasError } = useForm<IFormLogin>({
+  const { errors, fieldProps, handleSubmit, hasError } = useForm<IFormSignIn>({
     initialValues,
     onSubmit,
     validationSchema,

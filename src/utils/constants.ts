@@ -1,5 +1,6 @@
 export enum ErrorMessages {
   loginRequired = 'Insira o login corretamente!',
+  nameRequired = 'Insira o nome corretamente!',
   passwordRequired = 'Insira a senha corretamente!',
   passwordConfirmRequired = 'Insira a confirmação de senha corretamente!',
   confirmPasswordEquals = 'Senhas não correspondem!',
@@ -18,6 +19,7 @@ export enum ErrorMessages {
 }
 
 export enum SuccessMessages {
+  succesSignUpUser = 'Usuário registrado com sucesso!',
   successOnCreateChurras = 'Churras criado com sucesso!',
   successOnSaveConfirmations = 'Alterações feitas com sucesso!',
 }

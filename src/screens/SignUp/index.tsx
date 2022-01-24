@@ -1,44 +1,68 @@
 import * as Yup from 'yup';
+import { useHistory } from 'react-router-dom';
 import { Input, PasswordInput, PrimaryButton } from 'components';
 import { useForm } from 'hooks/useForm';
-import { ErrorMessages } from 'utils/constants';
-import { useHistory } from 'react-router-dom';
+import { ErrorMessages, SuccessMessages } from 'utils/constants';
+import { toast } from 'react-toastify';
+import api from 'services/api';
+import { useLoading } from 'hooks/useLoading';
 import { WrapperForm } from '../SignIn/styles';
 
-interface IFormLogin {
-  login: string;
+interface IFormSignUp {
+  name: string;
+  email: string;
   password: string;
   confirmPassword: string;
 }
 
-const initialValues: IFormLogin = {
-  login: '',
+interface IResponseSignUp {
+  success: boolean;
+  result: string;
+}
+
+const initialValues: IFormSignUp = {
+  name: '',
+  email: '',
   password: '',
   confirmPassword: '',
 };
 
 const validationSchema = Yup.object().shape({
-  login: Yup.string()
+  name: Yup.string().required(ErrorMessages.nameRequired),
+  email: Yup.string()
     .email(ErrorMessages.invalidEmail)
     .required(ErrorMessages.loginRequired),
   password: Yup.string()
     .required(ErrorMessages.passwordRequired)
-    .min(8, ErrorMessages.minPassword),
+    .min(6, ErrorMessages.minPassword),
   confirmPassword: Yup.string()
     .required(ErrorMessages.passwordConfirmRequired)
-    .oneOf([Yup.ref('senha'), null], ErrorMessages.confirmPasswordEquals)
-    .min(8, ErrorMessages.minPassword),
+    .oneOf([Yup.ref('password'), null], ErrorMessages.confirmPasswordEquals)
+    .min(6, ErrorMessages.minPassword),
 });
 
 export function SignUp() {
   const history = useHistory();
+  const { setLoading } = useLoading();
 
-  const onSubmit = (values: IFormLogin) => {
-    console.log(values);
-    history.push('churras');
+  const onSubmit = async (values: IFormSignUp) => {
+    const { name, email, password } = values;
+    const { data } = await api.post<IResponseSignUp>('/signup', {
+      name,
+      email,
+      password,
+    });
+
+    setLoading(false);
+
+    if (!data.success) {
+      return toast.error(data.result);
+    }
+    toast.success(SuccessMessages.succesSignUpUser);
+    return history.push('/');
   };
 
-  const { errors, fieldProps, handleSubmit, hasError } = useForm<IFormLogin>({
+  const { errors, fieldProps, handleSubmit, hasError } = useForm<IFormSignUp>({
     initialValues,
     onSubmit,
     validationSchema,
@@ -48,11 +72,19 @@ export function SignUp() {
     <WrapperForm>
       <form onSubmit={handleSubmit}>
         <Input
+          label="Nome"
+          {...fieldProps('name')}
+          placeholder="Digite seu nome"
+          isInvalid={hasError('name')}
+          error={errors.name}
+        />
+
+        <Input
           label="Email"
-          {...fieldProps('login')}
+          {...fieldProps('email')}
           placeholder="Digite seu email"
-          isInvalid={hasError('login')}
-          error={errors.login}
+          isInvalid={hasError('email')}
+          error={errors.email}
         />
 
         <PasswordInput
