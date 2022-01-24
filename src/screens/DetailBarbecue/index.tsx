@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import {
   AddButton,
   EmpityState,
-  ErrorMessage,
   PriceTotal,
   PrimaryButton,
   QuantityPeoples,

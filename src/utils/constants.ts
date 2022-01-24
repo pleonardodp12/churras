@@ -6,6 +6,7 @@ export enum ErrorMessages {
   reasonRequired = 'Insira um motivo para o churrasco!',
   dateRequired = 'Insira a data corretamente!',
   invalidDate = 'Data inválida!',
+  invalidEmail = 'Email inválido!',
   previousDate = 'Selecione uma data futura!',
   minPassword = 'A senha precisa ter no mínimo 6 dígitos',
 

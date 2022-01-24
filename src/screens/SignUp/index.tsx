@@ -18,7 +18,9 @@ const initialValues: IFormLogin = {
 };
 
 const validationSchema = Yup.object().shape({
-  login: Yup.string().required(ErrorMessages.loginRequired),
+  login: Yup.string()
+    .email(ErrorMessages.invalidEmail)
+    .required(ErrorMessages.loginRequired),
   password: Yup.string()
     .required(ErrorMessages.passwordRequired)
     .min(8, ErrorMessages.minPassword),

@@ -4,6 +4,8 @@ import { useForm } from 'hooks/useForm';
 import { ErrorMessages } from 'utils/constants';
 import { useHistory } from 'react-router-dom';
 import { SecondaryButton } from 'components/SecondaryButton';
+import { useLoading } from 'hooks/useLoading';
+import { useEffect } from 'react';
 import { WrapperForm } from './styles';
 
 interface IFormLogin {
@@ -17,12 +19,19 @@ const initialValues: IFormLogin = {
 };
 
 const validationSchema = Yup.object().shape({
-  login: Yup.string().required(ErrorMessages.loginRequired),
+  login: Yup.string()
+    .email(ErrorMessages.invalidEmail)
+    .required(ErrorMessages.loginRequired),
   password: Yup.string().required(ErrorMessages.passwordRequired),
 });
 
 export function SignIn() {
   const history = useHistory();
+  const { setLoading } = useLoading();
+
+  useEffect(() => {
+    setLoading(false);
+  }, []);
 
   const onSubmit = (values: IFormLogin) => {
     console.log(values);
