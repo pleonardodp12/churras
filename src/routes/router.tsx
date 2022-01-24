@@ -1,11 +1,18 @@
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
-import { Login, ListBarbecue, DetailBarbecue, CreateBarbecue } from 'screens';
+import {
+  SignIn,
+  SignUp,
+  ListBarbecue,
+  DetailBarbecue,
+  CreateBarbecue,
+} from 'screens';
 
 export function AppRoute() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route component={Login} path="/" exact />
+        <Route component={SignIn} path="/" exact />
+        <Route component={SignUp} path="/signup" />
         <Route component={ListBarbecue} path="/churras" exact />
         <Route component={DetailBarbecue} path="/churras/:id" />
         <Route component={CreateBarbecue} path="/churras-novo" />

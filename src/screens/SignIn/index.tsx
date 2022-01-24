@@ -3,6 +3,7 @@ import { Input, PasswordInput, PrimaryButton } from 'components';
 import { useForm } from 'hooks/useForm';
 import { ErrorMessages } from 'utils/constants';
 import { useHistory } from 'react-router-dom';
+import { SecondaryButton } from 'components/SecondaryButton';
 import { WrapperForm } from './styles';
 
 interface IFormLogin {
@@ -20,7 +21,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required(ErrorMessages.passwordRequired),
 });
 
-export function Login() {
+export function SignIn() {
   const history = useHistory();
 
   const onSubmit = (values: IFormLogin) => {
@@ -34,6 +35,10 @@ export function Login() {
     validationSchema,
   });
 
+  const handleScreenSignUp = () => {
+    history.push('signup');
+  };
+
   return (
     <WrapperForm>
       <form onSubmit={handleSubmit}>
@@ -44,6 +49,7 @@ export function Login() {
           isInvalid={hasError('login')}
           error={errors.login}
         />
+
         <PasswordInput
           label="Senha"
           {...fieldProps('password')}
@@ -51,7 +57,10 @@ export function Login() {
           isInvalid={hasError('password')}
           error={errors.password}
         />
+
         <PrimaryButton label="Entrar" type="submit" />
+
+        <SecondaryButton label="Cadastrar" onClick={handleScreenSignUp} />
       </form>
     </WrapperForm>
   );
