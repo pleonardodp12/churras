@@ -4,7 +4,7 @@ import { Input, PasswordInput, PrimaryButton } from 'components';
 import { useForm } from 'hooks/useForm';
 import { ErrorMessages } from 'utils/constants';
 import { useLoading } from 'hooks/useLoading';
-import { SecondaryButton } from 'components/SecondaryButton';
+import { SecondaryButton } from 'components/Buttons/SecondaryButton';
 import { useAuth } from 'hooks/useAuth';
 import { WrapperForm } from '../SignIn/styles';
 
@@ -38,7 +38,7 @@ const validationSchema = Yup.object().shape({
 
 export function SignUp() {
   const history = useHistory();
-  const { signUp } = useAuth();
+  const { signUp, isAuthenticated } = useAuth();
   const { setLoading } = useLoading();
 
   const onSubmit = async (values: IFormSignUp) => {
@@ -60,6 +60,8 @@ export function SignUp() {
   const handleBack = () => {
     history.push('/');
   };
+
+  if (isAuthenticated) history.push('/churras');
 
   return (
     <WrapperForm>

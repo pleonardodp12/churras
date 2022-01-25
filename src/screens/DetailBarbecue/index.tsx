@@ -14,7 +14,7 @@ import api from 'services/api';
 import { useBarbecue } from 'hooks/useBarbecue';
 import { Prompt, useHistory, useParams } from 'react-router-dom';
 import { IPeople, IResponseBarbecue } from 'context/barbecueContext';
-import { SecondaryButton } from 'components/SecondaryButton';
+import { SecondaryButton } from 'components/Buttons/SecondaryButton';
 import { ErrorMessages, SuccessMessages } from 'utils/constants';
 import { ListItem } from './components/ListItem';
 import {

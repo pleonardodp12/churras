@@ -3,7 +3,7 @@ import { Input, PasswordInput, PrimaryButton } from 'components';
 import { useForm } from 'hooks/useForm';
 import { ErrorMessages } from 'utils/constants';
 import { useHistory } from 'react-router-dom';
-import { SecondaryButton } from 'components/SecondaryButton';
+import { SecondaryButton } from 'components/Buttons/SecondaryButton';
 import { useLoading } from 'hooks/useLoading';
 import { useAuth } from 'hooks/useAuth';
 import { WrapperForm } from './styles';
@@ -27,7 +27,7 @@ const validationSchema = Yup.object().shape({
 
 export function SignIn() {
   const history = useHistory();
-  const { signIn } = useAuth();
+  const { signIn, isAuthenticated } = useAuth();
   const { setLoading } = useLoading();
 
   const onSubmit = async (values: IFormSignIn) => {
@@ -48,6 +48,8 @@ export function SignIn() {
   const handleScreenSignUp = () => {
     history.push('signup');
   };
+
+  if (isAuthenticated) history.push('/churras');
 
   return (
     <WrapperForm>

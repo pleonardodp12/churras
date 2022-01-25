@@ -1,7 +1,7 @@
 import { Dispatch } from 'react';
 import DatePicker, { DatePickerProps } from 'react-date-picker';
 
-import { Label } from 'components/Input/styles';
+import { Label } from 'components/Inputs/Input/styles';
 import { ErrorMessage } from 'components';
 
 import { Wrapper } from './styles';

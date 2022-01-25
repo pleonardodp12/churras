@@ -1,4 +1,4 @@
-import { Label } from 'components/Input/styles';
+import { Label } from 'components/Inputs/Input/styles';
 import iconDrink from 'assets/drink.png';
 import iconNoDrink from 'assets/no-drink.png';
 import { Wrapper, Option } from './styles';

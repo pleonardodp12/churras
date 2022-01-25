@@ -1,6 +1,6 @@
 import { InputHTMLAttributes } from 'react';
 import { ErrorMessage, PriceTotal } from 'components';
-import { Label } from 'components/Input/styles';
+import { Label } from 'components/Inputs/Input/styles';
 import { InputWrapper, InputBase } from './styles';
 
 interface IProps extends InputHTMLAttributes<HTMLInputElement> {

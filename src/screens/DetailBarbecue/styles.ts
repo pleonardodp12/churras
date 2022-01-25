@@ -102,7 +102,7 @@ export const Form = styled.form`
   max-height: 480px;
   padding: 42px;
   position: absolute;
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.white};
   align-self: center;
   top: 50%;
   left: 50%;
