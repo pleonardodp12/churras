@@ -112,6 +112,7 @@ export function DetailBarbecue() {
             ) : (
               selectedBarbecue?.peoples?.map((people, index) => (
                 <ListItem
+                  key={people.name}
                   handleConfirmPaid={() => handleConfirmPaid(people, index)}
                   people={people}
                 />

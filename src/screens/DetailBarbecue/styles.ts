@@ -91,7 +91,7 @@ export const Form = styled.form`
   width: 100%;
   height: 100%;
   max-height: 480px;
-  padding: 48px;
+  padding: 42px;
   position: absolute;
   background-color: white;
   align-self: center;
@@ -106,19 +106,7 @@ export const Form = styled.form`
 
   button {
     align-self: center;
-    margin-bottom: 8px;
-    height: 48px;
-  }
-`;
-
-export const CloseButton = styled.div`
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  transition: opacity 0.3s;
-  cursor: pointer;
-  &:hover {
-    opacity: 0.6;
+    min-height: 48px;
   }
 `;
 

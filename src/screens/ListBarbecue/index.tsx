@@ -41,6 +41,7 @@ export function ListBarbecue() {
       <WrapperOutSide>
         {barbecues?.map((barbecue) => (
           <Card
+            key={barbecue.id}
             barbecue={barbecue}
             onClick={() => redirectToDetailBarbecue(barbecue.id)}
           />

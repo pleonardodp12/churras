@@ -3,7 +3,13 @@ import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { WrapperScreen } from 'styles/global';
 import { useForm } from 'hooks/useForm';
-import { DatePickerInput, Input, InputRange, PrimaryButton } from 'components';
+import {
+  CloseButton,
+  DatePickerInput,
+  Input,
+  InputRange,
+  PrimaryButton,
+} from 'components';
 import { IResponseBarbecues } from 'context/barbecueContext';
 import { toast } from 'react-toastify';
 import api from 'services/api';
@@ -71,9 +77,14 @@ export function CreateBarbecue() {
     }
   }, [startDate]);
 
+  const handleBack = () => {
+    history.goBack();
+  };
+
   return (
     <WrapperScreen>
       <WrapperOutSide>
+        <CloseButton onClick={handleBack} />
         <TitlePage>Criar churras</TitlePage>
         <form onSubmit={handleSubmit}>
           <Input

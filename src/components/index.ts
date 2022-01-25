@@ -14,3 +14,4 @@ export { EmpityState } from './EmpityState';
 export { Spinner } from './Spinner';
 export { CheckBoxBeer } from './CheckBoxBeer';
 export { Loading } from './Loading';
+export { CloseButton } from './CloseButton';

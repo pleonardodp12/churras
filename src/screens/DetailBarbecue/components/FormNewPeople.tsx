@@ -2,11 +2,10 @@ import * as Yup from 'yup';
 import { ErrorMessages } from 'utils/constants';
 import { useForm } from 'hooks/useForm';
 import api from 'services/api';
-import { CheckBoxBeer, Input, PrimaryButton } from 'components';
+import { CheckBoxBeer, CloseButton, Input, PrimaryButton } from 'components';
 import { toast } from 'react-toastify';
-import { X } from 'phosphor-react';
 import { useBarbecue } from 'hooks/useBarbecue';
-import { Form, CloseButton } from '../styles';
+import { Form, Title } from '../styles';
 
 interface IProps {
   closeModalNewPeople: () => void;
@@ -72,9 +71,8 @@ export function FormNewPeople(props: IProps) {
   };
   return (
     <Form onSubmit={handleSubmit}>
-      <CloseButton onClick={closeModalNewPeople}>
-        <X size={24} />
-      </CloseButton>
+      <Title>{selectedBarbecue.reason}:</Title>
+      <CloseButton onClick={closeModalNewPeople} />
       <Input
         label="Nome"
         {...fieldProps('name')}
