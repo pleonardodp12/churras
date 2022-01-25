@@ -5,5 +5,5 @@ export const Img = styled.img`
   height: 48px;
   align-self: center;
   position: absolute;
-  bottom: 48px;
+  bottom: 24px;
 `;
