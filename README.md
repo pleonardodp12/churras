@@ -6,7 +6,7 @@
 
 Churras - é uma agenda de churrasco, onde os colaboradores da empresa podem fazer o login, cadastro, criar eventos de churrasco com preços sugeridos para quem bebe e quem não bebe, adicionar membros e fazer marcações com quem já deixou a colaboração paga!
 
-Para fazer o projeto foi desenvolvido uma pequena api para suprir as necessidades do front utilizando express e mongodb e está hospedada no heroku [Link do repositório][apiLink]
+Para fazer o projeto foi desenvolvido uma pequena api para suprir as necessidades do front utilizando express e mongodb e está hospedada no heroku [Link do repositório backend][apiLink]
 
 
 ## 🛠 Principais Tecnologias
