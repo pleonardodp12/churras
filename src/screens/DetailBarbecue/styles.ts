@@ -24,12 +24,14 @@ export const Header = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
+
 export const ContentRight = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   width: 80%;
 `;
+
 export const ContentLeft = styled.div`
   display: flex;
   flex-direction: column;
@@ -37,10 +39,12 @@ export const ContentLeft = styled.div`
   width: 20%;
   height: 100%;
 `;
+
 export const Title = styled.div`
   font-size: 28px;
   font-weight: bold;
 `;
+
 export const Description = styled.div`
   font-size: 36px;
   font-weight: bold;
