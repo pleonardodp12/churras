@@ -20,12 +20,11 @@
     "noEmit": true,
     "outDir": "./build",
     "jsx": "react-jsx",
-    "baseUrl": "./src"
+    "baseUrl": "./src",
   },
   "include": [
     "src",
     "**/*.ts",
-    "**/*.tsx",
-    "*.d.ts"
-  ]
+    "**/*.tsx"
+  ],
 }
