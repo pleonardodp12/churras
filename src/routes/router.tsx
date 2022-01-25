@@ -1,9 +1,11 @@
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
-import { SignIn } from 'screens/SignIn';
-import { SignUp } from 'screens/SignUp';
-import { ListBarbecue } from 'screens/ListBarbecue';
-import { DetailBarbecue } from 'screens/DetailBarbecue';
-import { CreateBarbecue } from 'screens/CreateBarbecue';
+import {
+  SignIn,
+  SignUp,
+  ListBarbecue,
+  DetailBarbecue,
+  CreateBarbecue,
+} from 'screens';
 import PrivateRoute from './PrivateRoute';
 
 export function AppRoute() {
