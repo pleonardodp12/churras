@@ -1,46 +1,56 @@
-# Getting Started with Create React App
+![logo](https://raw.githubusercontent.com/pleonardodp12/churras/b9884670fde097d0357b84db5f2d0dc9c27656e2/src/assets/icon-churras.svg)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+💻 [Acesse o link do projeto hospedado na vercel][projectvercel]
+## 📄 Sobre
 
-In the project directory, you can run:
+Churras - é uma agenda de churrasco, onde os colaboradores da empresa podem fazer o login, cadastro, criar eventos de churrasco com preços sugeridos para quem bebe e quem não bebe, adicionar membros e fazer marcações com quem já deixou a colaboração paga!
 
-### `npm start`
+Para fazer o projeto foi desenvolvido uma pequena api para suprir as necessidades do front utilizando express e mongodb e está hospedada no heroku [Link do repositório][apiLink]
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 🛠 Principais Tecnologias
 
-### `npm test`
+As seguintes ferramentas foram usadas na construção do projeto:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [React][reactjs]
+- [TypeScript][typescript]
+- [React-toastify][react-toastify]
+- [Phosphor-React][phosphor-react]
+- [Styled components][styled-components]
+- [Yup][yup]
+- [Formik][formik]
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 🧭 Rodando o projeto
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+OBS: Para rodar o projeto é necessário criar um arquivo .env.local na raiz do projeto e adicionar a variável: REACT_APP_API_URL
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+# Clone este repositório
+$ git clone https://github.com/pleonardodp12/churras
 
-### `npm run eject`
+# Acesse a pasta do projeto no seu terminal/cmd
+$ cd churras
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# Instale as dependências
+$ yarn install
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Execute a aplicação em modo de desenvolvimento
+$ yarn start
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+# A aplicação será aberta na porta:3000 - acesse http://localhost:3000
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+[typescript]: https://www.typescriptlang.org/
+[reactjs]: https://reactjs.org
+[yarn]: https://yarnpkg.com/
+[react-toastify]: https://fkhadra.github.io/react-toastify/introduction
+[phosphor-react]: https://phosphoricons.com/
+[styled-components]: https://styled-components.com/docs/api
+[yup]: https://github.com/jquense/yup
+[formik]: https://formik.org/docs/overview
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+[apiLink]: https://github.com/pleonardodp12/churras-backend
+[projectvercel]: [https://churras-trinca.vercel.app/]
