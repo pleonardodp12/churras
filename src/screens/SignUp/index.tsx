@@ -1,10 +1,15 @@
 import * as Yup from 'yup';
 import { useHistory } from 'react-router-dom';
-import { Input, PasswordInput, PrimaryButton } from 'components';
+import {
+  Input,
+  Logo,
+  PasswordInput,
+  PrimaryButton,
+  SecondaryButton,
+} from 'components';
 import { useForm } from 'hooks/useForm';
 import { ErrorMessages } from 'utils/constants';
 import { useLoading } from 'hooks/useLoading';
-import { SecondaryButton } from 'components/Buttons/SecondaryButton';
 import { useAuth } from 'hooks/useAuth';
 import { WrapperForm } from '../SignIn/styles';
 
@@ -102,6 +107,7 @@ export function SignUp() {
 
         <SecondaryButton label="Voltar" type="button" onClick={handleBack} />
       </form>
+      <Logo />
     </WrapperForm>
   );
 }

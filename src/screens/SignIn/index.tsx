@@ -1,9 +1,14 @@
 import * as Yup from 'yup';
-import { Input, PasswordInput, PrimaryButton } from 'components';
+import {
+  Input,
+  Logo,
+  PasswordInput,
+  PrimaryButton,
+  SecondaryButton,
+} from 'components';
 import { useForm } from 'hooks/useForm';
 import { ErrorMessages } from 'utils/constants';
 import { useHistory } from 'react-router-dom';
-import { SecondaryButton } from 'components/Buttons/SecondaryButton';
 import { useLoading } from 'hooks/useLoading';
 import { useAuth } from 'hooks/useAuth';
 import { WrapperForm } from './styles';
@@ -74,6 +79,7 @@ export function SignIn() {
 
         <SecondaryButton label="Cadastrar" onClick={handleScreenSignUp} />
       </form>
+      <Logo />
     </WrapperForm>
   );
 }
