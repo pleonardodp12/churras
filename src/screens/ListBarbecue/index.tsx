@@ -7,10 +7,12 @@ import { toast } from 'react-toastify';
 import api from 'services/api';
 import { WrapperScreen } from 'styles/global';
 import { ErrorMessages } from 'utils/constants';
+import { useLoading } from 'hooks/useLoading';
 import { WrapperOutSide } from './styles';
 
 export function ListBarbecue() {
   const history = useHistory();
+  const { setLoading } = useLoading();
   const { barbecues, setBarbecues, setSelectedBarbecue } = useBarbecue();
 
   const redirectToDetailBarbecue = (id: string) => {
@@ -27,7 +29,9 @@ export function ListBarbecue() {
   };
 
   const handleBarbecues = async () => {
+    setLoading(true);
     const { data } = await api.get<IResponseBarbecues>('/barbecues');
+    setLoading(false);
     if (!data.success) {
       return toast.error(ErrorMessages.failedToGetAllChurras);
     }
