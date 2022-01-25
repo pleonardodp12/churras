@@ -42,13 +42,19 @@ const validationSchema = Yup.object().shape({
         moment(value, 'DD/MM/YYYY').isAfter() ||
         moment().isSame(moment(value, 'DD/MM/YYYY'), 'day'),
     ),
-  priceDrink: Yup.string().required(),
-  priceWithoutDrink: Yup.string().required(),
+  priceDrink: Yup.number()
+    .required(ErrorMessages.priceDrinkRequired)
+    .min(1, ErrorMessages.priceDrinkMinValue)
+    .max(100, ErrorMessages.priceDrinkMaxValue),
+  priceWithoutDrink: Yup.number()
+    .required(ErrorMessages.priceDrinkRequired)
+    .min(1, ErrorMessages.priceDrinkMinValue)
+    .max(100, ErrorMessages.priceDrinkMaxValue),
 });
 
 export function CreateBarbecue() {
   const history = useHistory();
-  const [startDate, setStartDate] = useState<Date>(new Date());
+  const [date, setDate] = useState<Date>(new Date());
   const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async (values: IFormCreateBarbecue) => {
@@ -70,12 +76,12 @@ export function CreateBarbecue() {
     });
 
   useEffect(() => {
-    const date = startDate.toLocaleDateString();
-    if (!startDate) setValue('date', '');
-    if (startDate) {
-      setValue('date', date);
+    const dateFormated = date.toLocaleDateString();
+    if (!date) setValue('date', '');
+    if (date) {
+      setValue('date', dateFormated);
     }
-  }, [startDate]);
+  }, [date]);
 
   const handleBack = () => {
     history.goBack();
@@ -98,8 +104,8 @@ export function CreateBarbecue() {
             label="Data"
             {...fieldProps('date')}
             isInvalid={hasError('date')}
-            value={startDate}
-            onChange={setStartDate}
+            value={date}
+            onChange={setDate}
             error={errors.date}
           />
           <InputRange

@@ -1,7 +1,8 @@
 import { InputHTMLAttributes } from 'react';
 import { ErrorMessage, PriceTotal } from 'components';
 import { Label } from 'components/Inputs/Input/styles';
-import { InputWrapper, InputBase } from './styles';
+import { InputWrapper, InputBase, ContentInputs } from './styles';
+import { Input } from '../Input';
 
 interface IProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
@@ -15,15 +16,22 @@ export function InputRange(props: IProps) {
 
   return (
     <InputWrapper>
-      <Label>
-        {label}
-        <PriceTotal currency={value} />
-      </Label>
-      <div>
-        {min}
-        <InputBase isInvalid={isInvalid} {...rest} type="range" step={0.5} />
-        {max}
-      </div>
+      <Label>{label}</Label>
+      <PriceTotal currency={value} />
+      <ContentInputs>
+        <Input
+          {...rest}
+          label=""
+          isInvalid={isInvalid}
+          value={value}
+          type="number"
+        />
+        <div>
+          {min}
+          <InputBase isInvalid={isInvalid} {...rest} type="range" step={0.5} />
+          {max}
+        </div>
+      </ContentInputs>
       {isInvalid && <ErrorMessage>{error}</ErrorMessage>}
     </InputWrapper>
   );

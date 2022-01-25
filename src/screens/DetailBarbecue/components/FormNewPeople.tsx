@@ -80,6 +80,7 @@ export function FormNewPeople(props: IProps) {
         value={values.name}
         isInvalid={hasError('name')}
         error={errors.name}
+        autoComplete="off"
       />
       <CheckBoxBeer
         label="Bebe?"

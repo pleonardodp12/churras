@@ -11,14 +11,6 @@ export const InputWrapper = styled.div`
   width: 100%;
   max-width: 282px;
   margin-bottom: 16px;
-  div {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 4px 0 8px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
 `;
 
 export const InputBase = styled.input<IInputProps>`
@@ -31,5 +23,22 @@ export const InputBase = styled.input<IInputProps>`
   &:focus {
     box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.09);
     border: 1px solid ${({ theme }) => theme.colors.black};
+  }
+`;
+
+export const ContentInputs = styled.div`
+  margin-bottom: 8px;
+  input {
+    width: 100%;
+    max-width: 282px;
+    font-size: 18px;
+    margin: 0 8px;
+  }
+
+  div {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 `;
