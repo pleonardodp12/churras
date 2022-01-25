@@ -113,6 +113,7 @@ export function CreateBarbecue() {
             isInvalid={hasError('priceDrink')}
             {...fieldProps('priceDrink')}
             error={errors.priceDrink}
+            placeholder="Digite o preço com bebidas"
             value={values.priceDrink}
             min={0}
             max={100}
@@ -123,6 +124,7 @@ export function CreateBarbecue() {
             isInvalid={hasError('priceWithoutDrink')}
             {...fieldProps('priceWithoutDrink')}
             error={errors.priceWithoutDrink}
+            placeholder="Digite o preço sem bebidas"
             value={values.priceWithoutDrink}
             min={0}
             max={100}

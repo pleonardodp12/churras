@@ -27,6 +27,7 @@ export function DatePickerInput(props: IProps) {
         calendarIcon={null}
         clearIcon={null}
         locale="pt"
+        data-testid="date-input"
       />
       {isInvalid && <ErrorMessage>{error}</ErrorMessage>}
     </Wrapper>

@@ -7,12 +7,14 @@ import { Input } from '../Input';
 interface IProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   isInvalid: boolean;
+  placeholder: string;
   error?: string;
   value: number;
 }
 
 export function InputRange(props: IProps) {
-  const { label, isInvalid, error, min, max, value, ...rest } = props;
+  const { label, isInvalid, error, min, max, value, placeholder, ...rest } =
+    props;
 
   return (
     <InputWrapper>
@@ -22,6 +24,7 @@ export function InputRange(props: IProps) {
         <Input
           {...rest}
           label=""
+          placeholder={placeholder}
           isInvalid={isInvalid}
           value={value}
           type="number"
