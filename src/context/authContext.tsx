@@ -2,6 +2,7 @@ import { createContext, ReactNode, useEffect, useMemo, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { toast } from 'react-toastify';
 import api from 'services/api';
+import { SuccessMessages } from 'utils/constants';
 
 interface IProps {
   children: ReactNode;
@@ -16,9 +17,17 @@ interface IFormSignIn {
   password: string;
 }
 
+interface IFormSignUp {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
+
 interface IAuthContextData {
   user: IUser | null;
   signIn: (values: IFormSignIn) => Promise<boolean>;
+  signUp: (values: IFormSignUp) => Promise<boolean>;
   signOut: () => void;
   isAuthenticated: boolean;
 }
@@ -29,6 +38,11 @@ interface IResponseSignIn {
   error: string;
   result: string;
   user: IUser;
+}
+
+interface IResponseSignUp {
+  success: boolean;
+  result: string;
 }
 
 export const AuthContext = createContext({} as IAuthContextData);
@@ -69,6 +83,22 @@ export function AuthProvider(props: IProps) {
     return true;
   };
 
+  const signUp = async (values: any) => {
+    const { name, email, password } = values;
+    const { data } = await api.post<IResponseSignUp>('/signup', {
+      name,
+      email,
+      password,
+    });
+
+    if (!data.success) {
+      toast.error(data.result);
+      return false;
+    }
+    toast.success(SuccessMessages.succesSignUpUser);
+    return true;
+  };
+
   const signOut = () => {
     setUser(null);
     removeCookie('@churras:token');
@@ -83,8 +113,9 @@ export function AuthProvider(props: IProps) {
 
   const value = useMemo(
     () => ({
-      signIn,
       isAuthenticated,
+      signIn,
+      signUp,
       signOut,
       user,
     }),

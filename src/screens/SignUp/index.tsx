@@ -2,10 +2,10 @@ import * as Yup from 'yup';
 import { useHistory } from 'react-router-dom';
 import { Input, PasswordInput, PrimaryButton } from 'components';
 import { useForm } from 'hooks/useForm';
-import { ErrorMessages, SuccessMessages } from 'utils/constants';
-import { toast } from 'react-toastify';
-import api from 'services/api';
+import { ErrorMessages } from 'utils/constants';
 import { useLoading } from 'hooks/useLoading';
+import { SecondaryButton } from 'components/SecondaryButton';
+import { useAuth } from 'hooks/useAuth';
 import { WrapperForm } from '../SignIn/styles';
 
 interface IFormSignUp {
@@ -13,11 +13,6 @@ interface IFormSignUp {
   email: string;
   password: string;
   confirmPassword: string;
-}
-
-interface IResponseSignUp {
-  success: boolean;
-  result: string;
 }
 
 const initialValues: IFormSignUp = {
@@ -43,23 +38,17 @@ const validationSchema = Yup.object().shape({
 
 export function SignUp() {
   const history = useHistory();
+  const { signUp } = useAuth();
   const { setLoading } = useLoading();
 
   const onSubmit = async (values: IFormSignUp) => {
-    const { name, email, password } = values;
-    const { data } = await api.post<IResponseSignUp>('/signup', {
-      name,
-      email,
-      password,
-    });
-
+    setLoading(true);
+    const signup = await signUp(values);
     setLoading(false);
 
-    if (!data.success) {
-      return toast.error(data.result);
+    if (signup) {
+      history.push('/');
     }
-    toast.success(SuccessMessages.succesSignUpUser);
-    return history.push('/');
   };
 
   const { errors, fieldProps, handleSubmit, hasError } = useForm<IFormSignUp>({
@@ -67,6 +56,10 @@ export function SignUp() {
     onSubmit,
     validationSchema,
   });
+
+  const handleBack = () => {
+    history.push('/');
+  };
 
   return (
     <WrapperForm>
@@ -104,6 +97,8 @@ export function SignUp() {
         />
 
         <PrimaryButton label="Cadastrar" type="submit" />
+
+        <SecondaryButton label="Voltar" type="button" onClick={handleBack} />
       </form>
     </WrapperForm>
   );
