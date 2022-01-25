@@ -12,7 +12,7 @@ import { getTotalMoney } from 'utils/helpers';
 import empityIcon from 'assets/icon-empity-state.svg';
 import api from 'services/api';
 import { useBarbecue } from 'hooks/useBarbecue';
-import { useHistory, useParams } from 'react-router-dom';
+import { Prompt, useHistory, useParams } from 'react-router-dom';
 import { IPeople, IResponseBarbecue } from 'context/barbecueContext';
 import { SecondaryButton } from 'components/SecondaryButton';
 import { ErrorMessages, SuccessMessages } from 'utils/constants';
@@ -38,6 +38,7 @@ export function DetailBarbecue() {
   const params = useParams<IExtendParams>();
   const { selectedBarbecue, setSelectedBarbecue } = useBarbecue();
   const [modalNewPeople, setModalNewPeople] = useState(false);
+  const [unsaveWarning, setUnsaveWarning] = useState(false);
 
   const handleBarbecue = async () => {
     const { data } = await api.get<IResponseBarbecue>(`barbecues/${params.id}`);
@@ -70,6 +71,7 @@ export function DetailBarbecue() {
       return toast.error(ErrorMessages.failedToSaveConfirmations);
     }
     toast.success(SuccessMessages.successOnSaveConfirmations);
+    setUnsaveWarning(false);
     return history.push('/churras');
   };
 
@@ -85,10 +87,15 @@ export function DetailBarbecue() {
       ...selectedBarbecue,
       peoples,
     });
+    setUnsaveWarning(true);
   };
 
   return (
     <WrapperScreen>
+      <Prompt
+        message="Você não salvou as confirmações de pagamento, sair mesmo assim??"
+        when={unsaveWarning}
+      />
       {selectedBarbecue && (
         <WrapperOutSide>
           <Header>

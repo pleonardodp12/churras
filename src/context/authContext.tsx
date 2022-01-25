@@ -102,6 +102,7 @@ export function AuthProvider(props: IProps) {
   const signOut = () => {
     setUser(null);
     removeCookie('@churras:token');
+    removeCookie('@churras:user');
   };
 
   useEffect(() => {

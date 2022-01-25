@@ -53,9 +53,10 @@ export const ListContainer = styled.ol`
 `;
 
 export const ListItemBase = styled.li`
+  padding-bottom: 4px;
   font-weight: bold;
   display: flex;
-  justify-content: space-between;
+  align-items: center;
   border-bottom: 1px solid #e5c23188;
   margin-bottom: 16px;
   transition: filter 0.3s;
@@ -66,15 +67,14 @@ export const ListItemBase = styled.li`
 `;
 
 export const ListItemText = styled.p`
-  display: flex;
-  align-items: center;
-  margin-bottom: 8px;
-  > div {
-    margin-right: 8px;
-  }
+  width: 40%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-left: 8px;
 `;
 
 export const ListItemPrice = styled.p<IPropsPrice>`
+  margin-left: auto;
   text-decoration: ${({ paid }) => (paid ? 'line-through' : 'none')};
 `;
 

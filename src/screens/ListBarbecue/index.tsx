@@ -15,7 +15,9 @@ export function ListBarbecue() {
 
   const redirectToDetailBarbecue = (id: string) => {
     const selectedBarbecue = barbecues.find((barbecue) => barbecue.id === id);
+
     if (!selectedBarbecue) return;
+
     setSelectedBarbecue(selectedBarbecue);
     history.push(`churras/${id}`);
   };

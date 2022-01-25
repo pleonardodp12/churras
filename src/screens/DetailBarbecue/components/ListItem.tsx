@@ -11,10 +11,8 @@ export function ListItem(props: IProps) {
   const { people, handleConfirmPaid } = props;
   return (
     <ListItemBase onClick={handleConfirmPaid}>
-      <ListItemText>
-        <Check paid={people.confirm} />
-        {people.name}
-      </ListItemText>
+      <Check paid={people.confirm} />
+      <ListItemText>{people.name}</ListItemText>
       <ListItemPrice paid={people.confirm}>
         {formatCurrencyBRL(people.amountToPay)}
       </ListItemPrice>

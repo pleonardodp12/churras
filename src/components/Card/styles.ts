@@ -25,6 +25,10 @@ export const Title = styled.h3`
 export const RegularText = styled.p`
   font-weight: medium;
   font-size: 18px;
+  width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const FooterCard = styled.div`
