@@ -47,7 +47,11 @@ export const Title = styled.div`
 
 export const Description = styled.div`
   font-size: 36px;
+  width: 90%;
   font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const ListContainer = styled.ol`
@@ -72,6 +76,7 @@ export const ListItemBase = styled.li`
 
 export const ListItemText = styled.p`
   width: 40%;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   margin-left: 8px;
