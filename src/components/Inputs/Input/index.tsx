@@ -15,7 +15,7 @@ export function Input(props: IProps) {
     <InputWrapper>
       <Label>{label}</Label>
       <InputBase isInvalid={isInvalid} {...rest} />
-      {isInvalid && <ErrorMessage>{error}</ErrorMessage>}
+      {isInvalid ? <ErrorMessage>{error}</ErrorMessage> : null}
     </InputWrapper>
   );
 }
